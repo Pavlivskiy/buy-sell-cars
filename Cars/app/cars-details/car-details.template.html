@@ -1,0 +1,136 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+       <div class="navbar-header">
+           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#Menu_mobile">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+           </button>
+           <a class="brand" id="Brand" href="#"><img class="size-brand" ng-src="{{$ctrl.carDetail.brand.img}}" alt="Car"></a>
+       </div>
+       <div class="collapse navbar-collapse" id="Menu_mobile">
+           <div class="navbar-right">
+               <ul class="nav navbar-nav">
+                   <li><a href="#!/cars/photo/{{$ctrl.carDetail.cars.mark}}-{{$ctrl.carDetail.cars.model}}-{{$ctrl.carDetail.cars.id}}">{{$ctrl.carDetail.photo}}</a></li>
+               </ul>
+           </div>
+       </div>
+   </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 col-xs-12">
+            <a href="#">
+                <carousel class="sliders">
+                    <slide class="image-slider-details" ng-repeat="sl in $ctrl.carDetail.cars.image">
+                        <img class="image-details" ng-src="{{sl}}" />
+                        <div class="carousel-caption">
+                            <h4 class="slider-cars-color">{{$index + 1}}: {{$ctrl.carDetail.image.length}}</h4>
+                        </div>
+                    </slide>
+                </carousel>
+            </a>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+<div class="container background-color-details">
+    <div class="col-lg-3 col-xs-12 center-text" >
+        <ul ng-repeat="img in $ctrl.carDetail.cars.image | limitTo:$ctrl.carDetail.lim">
+            <li style="list-style: none">
+                <img class="size-img" src="{{img}}" />
+            </li>
+        </ul>
+        
+    </div>
+    <div class="col-lg-6">
+        <div class="center-text ">{{$ctrl.carDetail.cars.mark}} {{$ctrl.carDetail.cars.model}} {{$ctrl.carDetail.cars.year}}</div>
+        <div class="col-lg-6">
+            <div><span class="color-silver">{{$ctrl.carDetail.bodyType}}:</span> {{$ctrl.carDetail.cars.bodyType}}</div>
+            <div><span class="color-silver">{{$ctrl.carDetail.engeen}}:</span> {{$ctrl.carDetail.cars.fuel}}</div>
+            <div><span class="color-silver">{{$ctrl.carDetail.DriveUnit}}:</span> {{$ctrl.carDetail.cars.DriveUnit}}</div>
+            <div><span class="color-silver">{{$ctrl.carDetail.town}}:</span> {{$ctrl.carDetail.cars.city}}</div>  
+        </div>
+        <div class="col-lg-6">
+            <div><span class="color-silver">{{$ctrl.carDetail.capasity}}:</span> {{$ctrl.carDetail.cars.capasity}}</div>
+            <div><span class="color-silver">{{$ctrl.carDetail.transmission}}:</span> {{$ctrl.carDetail.cars.transmission}}</div>
+            <div><span class="color-silver">{{$ctrl.carDetail.color}}:</span> {{$ctrl.carDetail.cars.color}}</div> 
+        
+        </div>
+        <div class="col-lg-12">
+            <div class="color-silver">{{$ctrl.carDetail.state}}:</div>
+            <div>{{$ctrl.carDetail.cars.state}}</div>
+            <div class="color-silver">{{$ctrl.carDetail.description}}: </div>
+            <div>{{$ctrl.carDetail.cars.description}}</div>
+            <div class="color-silver">{{$ctrl.carDetail.Comfort}}:</div>
+            <div>{{$ctrl.carDetail.cars.Comfort}}</div>
+            <div class="color-silver">{{$ctrl.carDetail.Secure}}:</div>
+            <div>{{$ctrl.carDetail.cars.Secure}}</div>
+            <div class="color-silver">{{$ctrl.carDetail.other}}:</div>
+            <div>{{$ctrl.carDetail.cars.other}}</div>
+            <div class="color-silver">{{$ctrl.carDetail.Multimedia}}:</div>
+            <div>{{$ctrl.carDetail.cars.Multimedia}}</div>
+        </div> 
+    </div>
+    <div class="col-lg-3 col-xs-12 center-text">
+        <ul ng-repeat="img in $ctrl.carDetail.cars.image" ng-if="$index >= 2">
+            <li style="list-style: none">
+                <img class="size-img" src="{{img}}" />
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="container background-color-details">
+    <div class="col-lg-12 center-text">
+        <label for="Name">{{$ctrl.carDetail.responseName}}:</label>
+        <input type="text" id="Name" ng-model="$ctrl.Name">
+    </div>
+    <div class="col-lg-12 center-text">
+        <textarea name="response" id="response" ng-model="$ctrl.response"></textarea>
+    </div>
+    <div class="col-lg-12 center-text">
+        <button ng-click="$ctrl.submitResponse($ctrl.Name, $ctrl.response)">{{$ctrl.carDetail.responseButton}}</button>
+    </div>
+    <div class="col-lg-12">
+        <ul ng-repeat="response in $ctrl.carDetail.responses">
+            <li>
+                <p>{{response.userName}}</p>
+                <p>{{response.text}}</p>
+            </li>   
+        </ul>
+    </div>
+    
+</div>
+
+<footer>
+        
+    <div class="footer-top"> 
+       <div class="container">
+         <div class="col-lg-4 col-xs-12 text-center">
+             <a class="btn btn-block btn-social btn-facebook btn-sm" href="https://www.facebook.com/profile.php?id=100017199545803"><i class="fa fa-facebook fa-2x"></i>Facebook</a>
+         </div>
+          <div class="col-lg-4 col-xs-12 text-center">
+             <a class="btn btn-block btn-social btn-github btn-sm" href="https://github.com/Pavlivskiy"><i class="fa fa-github fa-2x"></i>Github</a>
+         </div>
+          <div class="col-lg-4 col-xs-12 text-center">
+             <a class="btn btn-block btn-social btn-google btn-sm" href="pavlivskiyvolodymyr@gmail.com"><i class="fa fa-google-plus fa-2x"></i>Google</a>
+         </div>
+       </div> 
+    </div>  
+</footer>
+<div class="copyright">
+ <div class="container">
+   
+     <div class="text-center">
+         <p>Copyright © {{$ctrl.date}} All rights reserved</p>
+         <select ng-change="$ctrl.translate($ctrl.selectedLanguage)" ng-model="$ctrl.selectedLanguage">
+            <option value="ru">ru</option>
+            <option value="ua">ua</option>
+         </select>
+            
+     </div>
+     
+    </div>
+</div>

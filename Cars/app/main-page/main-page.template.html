@@ -1,0 +1,149 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+     <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#Menu_mobile">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" id="Brand" href="#"><img class="size-brand" ng-src="{{$ctrl.language.brand.img}}" alt="Car"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="Menu_mobile">
+            <div class="navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="" ng-click="$ctrl.allCars()">{{$ctrl.language.list1.allCars}}</a></li>
+                    <li><a href="" ng-click="$ctrl.usedCars()">{{$ctrl.language.list1.used_cars}}</a></li>
+                    <li><a href="" ng-click="$ctrl.newCars()">{{$ctrl.language.list1.new_cars}}</a></li>
+                    <li><input type="text" class="search" placeholder="{{$ctrl.language.list1.search}}" ng-model="$ctrl.search" /></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 col-xs-12">
+            <a href="#">
+                <carousel interval="$ctrl.myInterval">
+                    <slide class="image-slider" ng-repeat="sl in $ctrl.language.slider.image">
+                        <img class="image1" ng-src="{{sl}}" />
+                        <div class="carousel-caption">
+                            <h4 class="slider-cars-color">{{$ctrl.language.slider.sliderCars[$index]}}</h4>
+                        </div>
+                    </slide>
+                </carousel>
+            </a>
+        </div>
+        <div class="container background-color"> 
+            <div class="col-lg-12 col-xs-12">
+                <div class="settings">
+                        <div class="wrapper"  >
+                            <h3 class="center-text">{{$ctrl.language.title}}:</h3>
+                            <div class="row">
+                                <div class="col-lg-1 col-xm-2"></div>
+                                <div class="col-lg-5 col-xm-4 text-left">
+                                    <label class="font-size" for="bodyType">{{$ctrl.language.TypeCars}}:</label>
+                                    <select class="width" ng-change="$ctrl.TypeBodyCar($ctrl.bodyType)" ng-options="body for body in $ctrl.language.bodyTypes" id="bodyType" ng-model="$ctrl.bodyType"></select><br />
+                                    <label class="font-size" for="city">{{$ctrl.language.Region}}:</label>
+                                    <select class="width" ng-options="city for city in $ctrl.language.cityCars" ng-change="$ctrl.regionCar($ctrl.selectCity)" ng-model="$ctrl.selectCity"  name="categories_id" id="city"></select><br />
+                                    <label class="font-size" for="colorCar">{{$ctrl.language.Color}}:</label>
+                                    <select class="width" ng-options="color for color in $ctrl.language.colorCars" id="colorCar" ng-change="$ctrl.colorCar($ctrl.selectColor)" ng-model="$ctrl.selectColor"></select><br />
+                                    <label>{{$ctrl.language.price}}:<br /> 
+                                        <label for="from">{{$ctrl.language.from}}:</label>
+                                        <input ng-change="$ctrl.price($ctrl.minValue, $ctrl.maxValue)" type="number" min="0" max="1000000" id="from" ng-model="$ctrl.minValue" type="text" />
+                                        <label for="to">{{$ctrl.language.to}}:</label>
+                                        <input ng-change="$ctrl.price($ctrl.minValue, $ctrl.maxValue)" type="number" min="0" max="1000000" id="to" ng-model="$ctrl.maxValue" type="text" />
+                                    </label>
+                                </div>
+                                <div class="col-lg-1 col-xm-1"></div>
+                                <div class="col-lg-4 col-xm-3 text-left">
+                                    <label class="font-size" for="markCars">{{$ctrl.language.Mark}}:</label>
+                                    <select class="width" ng-change="$ctrl.changeMark($ctrl.marks)" ng-options="mark for mark in $ctrl.language.markCars" name="categories_id" id="markCars" ng-model="$ctrl.marks"></select><br />
+                                    <label class="font-size" for="modelCars">{{$ctrl.language.Model}}:</label>
+                                    <select class="width" ng-change="$ctrl.changeModel($ctrl.modelCars)" ng-options="modelCars for modelCars in $ctrl.chooseModel"  name="categories_id" id="modelCars" ng-model="$ctrl.modelCars"></select><br />
+                                    <label class="font-size" for="fuel">{{$ctrl.language.fuel}}:</label>
+                                    <select class="width" ng-options="fuel for fuel in $ctrl.language.fuelCars" ng-change="$ctrl.changeFuel($ctrl.selectFuel)" ng-model="$ctrl.selectFuel"  name="categories_id" id="fuel"></select>
+                                    <label>{{$ctrl.language.year}}:<br /> 
+                                        <label for="from">{{$ctrl.language.from}}:</label>
+                                        <input ng-change="$ctrl.year($ctrl.minYear, $ctrl.minYear)" type="number" min="1900" max="2018" id="from" ng-model="$ctrl.minYear" type="text" />
+                                        <label for="to">{{$ctrl.language.to}}:</label>
+                                        <input ng-change="$ctrl.year($ctrl.minYear, $ctrl.maxYear)" type="number" min="1900" max="2018" id="to" ng-model="$ctrl.maxYear" type="text" />
+                                    </label>
+                                </div>
+                                <div class="col-lg-2 col-xm-2"></div>
+                            </div>
+                            
+                        </div>
+                </div>           
+                <hr />
+                <ul class="cars" type="none" ng-repeat="car in $ctrl.language.cars | filter:$ctrl.search | limitTo: $ctrl.language.limit">
+                    <li class="carsBlock">
+                        <div class="ticket-photo">
+                            <a href="#!/cars/{{car.mark}}-{{car.model}}-{{car.id}}" class="thumb">
+                                <img class="carsImg" ng-src="{{car.img}}" />
+                            </a>
+                        </div>
+                        
+                        <a href="#!/cars/{{car.mark}}-{{car.model}}-{{car.id}}" class="mark-link">
+                            <div class="mark">
+                                <span class="text-size">{{car.mark}}</span>
+                                <span class="text-size">{{car.model}}</span>
+                                <span class="text-size">{{car.year}}</span>  
+                            </div>
+                        </a>
+                        <!-- <span class="glyphicon glyphicon-star wish"></span> -->
+                            <div class="col-lg-4 col-xs-12">
+                                <span class="priceCars">{{car.price}}<span class="glyphicon glyphicon-usd"></span></span>
+                                <p class="font">{{$ctrl.language.run}}: {{car.run}}</p>
+                                <p class="font">{{$ctrl.language.fuel}}: {{car.fuel}}</p>
+                            </div>
+                            <div class="col-lg-3 col-xs-12">
+                                <p class="margin-top font">{{$ctrl.language.state}}: {{car.new}}</p>
+                                <p class="font">{{$ctrl.language.city}}: {{car.city}}</p>
+                            </div>
+                            <div class="col-lg-5 col-xs-12"></div>
+                    </li>
+                </ul>
+                <div class="row">
+                    <div class="col-lg-12 col-xs-12 load">
+                        <button class=" btn btn-success btn-lg loadMore" ng-click="$ctrl.loadMore()" ng-hide="$ctrl.language.limit >= $ctrl.language.cars.length || $ctrl.language.cars.length == 0">Load more</button>
+                        <div class="empty" ng-show="$ctrl.language.cars.length == 0">
+                            <p>{{$ctrl.language.empty}}</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</div>
+<footer>
+        <div class="footer-top"> 
+           <div class="container">
+             <div class="col-lg-4 col-xs-12 text-center">
+                 <a class="btn btn-block btn-social btn-facebook btn-sm" href="https://www.facebook.com/profile.php?id=100017199545803"><i class="fa fa-facebook fa-2x"></i>Facebook</a>
+             </div>
+              <div class="col-lg-4 col-xs-12 text-center">
+                 <a class="btn btn-block btn-social btn-github btn-sm" href="https://github.com/Pavlivskiy"><i class="fa fa-github fa-2x"></i>Github</a>
+             </div>
+              <div class="col-lg-4 col-xs-12 text-center">
+                 <a class="btn btn-block btn-social btn-google btn-sm" href="pavlivskiyvolodymyr@gmail.com"><i class="fa fa-google-plus fa-2x"></i>Google</a>
+             </div>
+           </div> 
+        </div>  
+    </footer>
+    
+    
+<div class="copyright">
+    <div class="container">
+        <div class="text-center">
+            <p>Copyright © {{$ctrl.date}} All rights reserved</p>
+            <select ng-change="$ctrl.translate($ctrl.selectedLanguage)" ng-model="$ctrl.selectedLanguage">
+                <option value="ru">ru</option>
+                <option value="ua">ua</option>
+            </select>           
+        </div>        
+    </div>
+</div>

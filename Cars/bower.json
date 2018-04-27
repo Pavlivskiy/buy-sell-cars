@@ -1,0 +1,18 @@
+{
+  "name": "Cars",
+  "description": "Project for Angular js",
+  "main": "index.html",
+  "authors": [
+    "Pavlovskiy Vladimir"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
